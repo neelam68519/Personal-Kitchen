@@ -4,7 +4,7 @@
 	<div class="md-col-12 banner-form" id="shownArea">
       <div class="container message">
         <h4>Showing available food items near <span style="color:green;">${locality}, ${city}.</span></h4>
-        <h4><button class='btn btn-small' id="changeArea">Click to change</button></h4>
+        <h4><button class='btn btn-small' id="changeArea"  style="padding:0px">Click to change</button></h4>
       </div>
     </div>
     </c:when>
@@ -19,7 +19,7 @@
             <input type="text" placeholder="Select your City" id="userCity" class="textbox" style="height: 10%;" name="city">
             <label for="userArea" style="margin:10px">Area</label>
             <input type="text" placeholder="Select your Area" id="userArea" class="textbox" style="height: 10%;" name="locality">
-            <input type="submit" class="btn btn-primary" value="Submit">
+            <input type="submit" class="btn btn-primary" value="Submit"  style="padding:0px">
           </div>
         </form>
       </div>
@@ -36,7 +36,7 @@
             <input type="text" placeholder="Select your City" id="userCity" class="textbox" style="height: 10%;" name="city">
             <label for="userArea" style="margin:10px">Area</label>
             <input type="text" placeholder="Select your Area" id="userArea" class="textbox" style="height: 10%;" name="locality">
-            <input type="submit" class="btn btn-primary" value="Submit">
+            <input type="submit" class="btn btn-primary" value="Submit"  style="padding:0px">
           </div>
         </form>
       </div>
@@ -48,9 +48,11 @@
  	  		  <div class="cont span_2_of_3">
                 <div class="row">
               <div style="margin-top:2%">
-                Sort By: <a href="#">Relevance</a> | <a href="#">Rating</a> | <a href="#">Price</a>
+                Sort By: <a href="#">Rating</a> | <a href="filter-area?sortBy=price">Price</a>
               </div>
-              
+              <c:if test="${itemsCount == 0}">
+              	<h3>Sorry, no matching results found!!</h3>
+              </c:if>
               <c:forEach var="item" varStatus="loop" items="${itemsList}">
               
                 <div class="col-md-2">
@@ -58,7 +60,7 @@
                         <div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
                             <div class="portfolio-wrapper">     
                                 <a data-toggle="modal" data-target="#itemsModal${item.id}" href="#" class="b-link-stripe b-animate-go  thickbox">
-                                 <img src="resources/images/cont2.jpg" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 "><img src="resources/images/link-ico.png" alt=""/></h2>
+                                 <img src="/data/images/${item.image_url}" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 "><img src="resources/images/link-ico.png" alt=""/></h2>
                                 </div></a>
                             </div>
                         </div>      

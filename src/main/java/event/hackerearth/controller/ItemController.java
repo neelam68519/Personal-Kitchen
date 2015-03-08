@@ -91,6 +91,7 @@ public class ItemController {
 
         if (user == null) {
             mv = new ModelAndView("auth-user");
+            mv.addObject("forwardTo", "sell-item");
         } else
             mv = new ModelAndView("add-item");
 
@@ -102,9 +103,6 @@ public class ItemController {
     public ModelAndView addItem(final HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         // TODO
-        user = new User();
-        user.setName("nel");
-        user.setEmail("nel@gmal.com");
 
         String phone;
         String addressLine1;
@@ -150,8 +148,8 @@ public class ItemController {
 
                         itemImgName = user.getName() + System.currentTimeMillis() + '.' + imgExtension;
                         foodItem.setImage_url(itemImgName);
-                        
-                     // saves the file to upload directory
+
+                        // saves the file to upload directory
                         filePath = getImageDirPath(request) + File.separator + itemImgName;
                         uploadedFile = new File(filePath);
                         if (!uploadedFile.canRead()) {
@@ -247,6 +245,8 @@ public class ItemController {
     private String getRootPath(final HttpServletRequest request) {
         String path = request.getSession().getServletContext().getRealPath("/");
         path = path.substring(0, path.lastIndexOf(File.separatorChar));
+        path = path.substring(0, path.lastIndexOf(File.separatorChar));
+
         return path;
     }
 
@@ -254,4 +254,21 @@ public class ItemController {
         return getRootPath(request) + File.separator + Constant.IMAGES_DIR;
     }
 
+    @RequestMapping("/confirm-order")
+    public ModelAndView confirmOrder(final HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        ModelAndView mv;
+
+        if (user == null) {
+            mv = new ModelAndView("auth-user");
+            mv.addObject("forwardTo", "confirm-order");
+        } else {
+            String itemId = request.getParameter("itemId");
+            Item item = itemService.getItem(itemId);
+            mv = new ModelAndView("confirm-order");
+            mv.addObject("item", item);
+            mv.addObject("user", user);
+        }
+        return mv;
+    }
 }

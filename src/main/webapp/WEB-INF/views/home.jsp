@@ -7,7 +7,7 @@
 <!--end slider -->
 
 <!-- Include the API client and Google+ client. -->
-<script src="https://plus.google.com/js/client:plusone.js"></script>
+<script type="text/javascript" src="resources/js/custom.js"></script>
 </head>
 <script>
 	

@@ -29,14 +29,12 @@
                <div class="ratebox" data-id="1" data-rating="2.2" style="float:right"></div>
                <div class="price_single">
                   <!-- <span class="reducedfrom">$66.00</span> -->
-                  <span class="actual">&#8377; ${item.price}(Per Serving)</span>
+                  <span class="actual">&#8377;${item.price} (Per Serving)</span>
                </div>
                <div class="btn_form">
-                  <form>
-                     <input type="submit" value="buy now" title="">
-                  </form>
+                     <a href="confirm-order?itemId=${item.id}" class="btn">Buy now</a>
                </div>
-               <p class="m_desc">${item.description}</p>
+               <p class="m_desc">Sold by: ${item.user.name}</p>
                <div class="social_single">
                   <ul list-unstyled>
                      <li class="fb"><a href="#"><span> </span></a></li>

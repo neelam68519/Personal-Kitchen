@@ -21,7 +21,8 @@
 	  <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 	  <script src="resources/js/raterater.jquery.js"></script> 
       <script type="text/javascript" src="resources/js/items.js"></script>
-	  <script type="text/javascript" src="resources/js/custom.js"></script>
+	  <script type="text/javascript" src="resources/js/oauth.js"></script>
+	  <script src="https://plus.google.com/js/client:plusone.js"></script>
 	  <!-- star rating plugin -->
 	  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
 	  <link href="resources/css/raterater.css" rel="stylesheet"/>
@@ -30,22 +31,33 @@
       
    </head>
 <body>
-<div class="header-bg">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-5">
-				<div class="logo">
-					<h1 class="title" style="color:#FFFFFF">Personal Kitchen</h1>
+	<div class="header-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5">
+					<div class="logo">
+						<h1 class="title" style="color: #FFFFFF">Personal Kitchen
+						</h1>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-7">
-				<div class="pull-right">
-					<button class="g-signin" data-scope="email"
-						data-clientid="164632780602-5sf75erhbu85omclvsj82v3j9rb3j20t.apps.googleusercontent.com"
-						data-callback="onSignInCallback" data-theme="dark"
-						data-cookiepolicy="single_host_origin"></button>
+				<div class="col-md-7">
+					<c:if test="${empty user.email}">
+						<div class="pull-right">
+							<button class="g-signin" data-scope="email"
+								data-clientid="14785241087-j8c8iipksvgknv5h61l7pg5abc4fmnmc.apps.googleusercontent.com"
+								data-callback="onSignInCallback" data-theme="dark"
+								data-cookiepolicy="single_host_origin">
+							</button>
+						</div>
+					</c:if>
+					<c:if test="${not empty user.email}">
+						<div class="pull-right" style="color: #FFFFFF">
+							Welcome <c:out value="${user.email}"></c:out>
+							<br>
+							<a href="logout" class="btn" style="padding:5px">Logout</a>
+						</div>
+					</c:if>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
